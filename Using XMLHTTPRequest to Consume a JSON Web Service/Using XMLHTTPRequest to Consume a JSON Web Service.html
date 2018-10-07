@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="display"></div>
+
+<script>
+var xmlhttp = new XMLHttpRequest();
+var url = "http://gymbandit.org/CIT261.php";
+
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
+		console.log(this.responseText);
+        process(data);
+    }
+};
+xmlhttp.open("POST", url);
+xmlhttp.send();
+
+function process(data) {
+    var out = "";
+    var i;
+    for(i = 0; i < data.length; i++) {
+        out += '<b>' + data[i].fname +" "+ data[i].lname +' </b><span> ' + data[i].age + '<span><br/>';
+    }
+    document.getElementById("display").innerHTML = out;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<style>
+#messages {border-style: double;}
+</style>
+<body>
+
+<p>Click the button to make a BUTTON element.</p>
+
+<button id="firstButton" onclick="createElem()">Create button</button>
+<p></p>
+ <div id="messages" >
+
+</div>
+
+<script>
+var i = 1;
+function createElem() {
+	//var firstButton = element('firstButton');
+    var addBtn = document.createElement("BUTTON");
+	addBtn.setAttribute('onclick', 'createMessage()');
+	addBtn.textContent = "Create Message";
+    document.body.appendChild(addBtn);
+	
+		//var firstButton = element('firstButton');
+    var removeBtn = document.createElement("BUTTON");
+	removeBtn.setAttribute('onclick', 'removeMessage()');
+	removeBtn.textContent = "Remove Message";
+    document.body.appendChild(removeBtn);
+}
+
+function createMessage() {
+if(i < 1) {
+i = 1;
+}
+
+    // Build out message div
+    var message = document.createElement('div');
+    message.setAttribute('class', 'chat-message');
+    message.textContent = "This is message #"+ i;
+    messages.appendChild(message);
+    messages.insertBefore(message, messages.firstChild);
+i++;
+}
+function removeMessage() {
+if(i < 1) {
+i = 1;
+}
+messages.removeChild(messages.childNodes[0]);
+i--;
+}
+
+</script>
+
+</body>
+</html>

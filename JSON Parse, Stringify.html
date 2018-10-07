@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays</h2>
+
+<p>The for/in statement loops through the properties of an object.</p>
+
+<b>JSON object:  </b><span id="Jobject"></span><br/>
+<b>JSON.stringify:  </b><span id="Jstring"></span><br/>
+<b>back to JSON object: </b><span id="backto"></span><br/>
+<hr/>
+<b>users array object </b><span id="usersobj"></span><br/>
+<b>stringified users array object </b><span id="users"></span><br/>
+<hr/>
+<b>stringify second param </b><span id="secondParam"></span><br/>
+
+<script>
+var users = [];
+var person = {fname:"John", lname:"Doe", age:25, email:"doe@gmail.com"};
+users.push(person);
+users.push({fname:"James", lname:"Dean", age:37});
+users.push({fname:"Bob", lname:"Menkok", age:35});
+console.log(users);
+
+var personString = JSON.stringify(person);
+document.getElementById("Jobject").innerHTML = person;
+document.getElementById("Jstring").innerHTML = personString;
+jobject =JSON.parse(personString);
+document.getElementById("backto").innerHTML = jobject;
+
+
+
+document.getElementById("usersobj").innerHTML = users;
+var newusers = JSON.stringify(users);
+document.getElementById("users").innerHTML = newusers;
+
+
+function replacer(key, value) {
+  console.log(typeof value);
+  if (key === 'email') {
+    return "company@coolcompany.com";
+  }
+  return value;
+}
+const userStr = JSON.stringify(person, replacer);
+document.getElementById("secondParam").innerHTML = userStr;
+</script>
+
+</body>
+</html>

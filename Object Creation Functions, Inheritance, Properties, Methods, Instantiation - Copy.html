@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<script>
+//Supeclass constructor function
+function Device(){
+	var screen;
+	var CPU;
+	var RAM;
+	var storage;
+	var GPU;
+}
+Device.prototype.setProperties = function(screen, CPU, RAM, storage, GPU) {
+			this.screen = screen;
+			this.CPU = CPU;
+			this.RAM = RAM;
+			this.storage = storage;
+			this.GPU = GPU;
+}
+
+//Subclass prototype function
+function Laptop(){
+	this.batterlife = "3 hours";
+	this.name ='';
+}
+
+//Inherit the properties from SuperType
+Laptop.prototype = new Device();
+
+
+//Add new property to SubType prototype
+Laptop.prototype.getBatteryLIfe = function(){
+	return this.batterLife;
+}
+Laptop.prototype.setbatterLife = function(batterlife) {
+ this.batterlife = batterlife;
+}
+Laptop.prototype.setName = function(name) {
+this.name = name;
+}
+
+//Create a SubType object
+//var Dell = new Laptop();
+var Dell = Object.create(Laptop.prototype);
+Dell.setProperties(16.5, 2.3, 16, '2TB', 2);
+Dell.setbatterLife("1 Hour");
+Dell.setName("Dell");
+console.log(Dell.name);
+console.log(Dell.screen); 
+console.log(Dell.batterlife); 
+
+//Other subType
+var HP = new Laptop();
+HP.setProperties(16.5, 2.3, 20, '2TB', 4);
+HP.setName("HP envy K20");
+HP.setbatterLife("5 Hours");
+console.log(HP.name +" "+ HP.GPU);
+
+</script>
+
+</body>
+</html>

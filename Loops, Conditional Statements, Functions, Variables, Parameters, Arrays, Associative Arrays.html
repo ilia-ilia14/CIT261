@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays</h2>
+
+<p>The for/in statement loops through the properties of an object.</p>
+
+<b>FORLOOP First names in the Array: </b><span id="forloop"></span><br/>
+<b>WHILELOOP Last Names in the Array: </b><span id="whileloop"></span><br/>
+<b>DOWHILELOOP user ages in the Array: </b><span id="dowhileloop"></span><br/>
+<b>Function Oldest user: </b><span id="oldestUser"></span><br/>
+
+<script>
+var users = [];
+var person = {fname:"John", lname:"Doe", age:25};
+users.push(person);
+users.push({fname:"James", lname:"Dean", age:37});
+users.push({fname:"Bob", lname:"Menkok", age:35});
+
+
+
+var i;
+var text ="";
+for (i = 0; i < users.length; i++) { 
+    text += users[i].fname + ", ";
+}
+document.getElementById("forloop").innerHTML = text;
+
+i=0;
+text = "";
+while (users[i]) {
+    text += users[i].lname + ", ";
+    i++;
+}
+document.getElementById("whileloop").innerHTML = text;
+
+i=0;
+text = "";
+do {
+    text += users[i].age + ", ";
+    i++;
+}while (i < users.length );
+document.getElementById("dowhileloop").innerHTML = text;
+
+
+
+function findOldestUser(users) {
+i = 0;
+var oldest =0
+while (i < users.length) {
+	console.log(oldest +" " + users[i].age);
+	
+	if(oldest < users[i].age) {
+	oldest = users[i].age;
+	console.log(users[i].age);
+	}
+	
+	//console.log(users[i].age);
+	i++;
+}
+return oldest;
+}
+document.getElementById("oldestUser").innerHTML = findOldestUser(users);
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="result"></div>
+
+
+<p></p>
+<button  onclick="removeUser()">remove hardcoded user</button>
+<p></p>
+<p></p>
+<button  onclick="clearStorage()">clear all</button>
+<p></p>
+<p></p>
+<form id="form">
+<input type="text" name="fname" placeholder="first name"><br>
+<input type="text" name="lname" placeholder="last name"><br>
+<input type="number" name="age" placeholder="age"><br>
+<button type="button"  onclick="adduser()">Add user</button>
+</form>
+
+<p></p>
+<b>localstorage list </b><span id="users"></span><br/>
+
+<script>
+
+var users = [];
+var person = {fname:"John", lname:"Doe", age:25, email:"doe@gmail.com"};
+users.push(person);
+users.push({fname:"James", lname:"Dean", age:37});
+users.push({fname:"Bob", lname:"Menkok", age:35});
+document.getElementById("users").innerHTML = JSON.stringify(users);
+// Check browser support
+if (typeof(Storage) !== "undefined") {
+    
+	var myStorage = window.localStorage;
+	myStorage.setItem('user', 'Tom');
+	var user = myStorage.getItem('user');
+	document.getElementById("result").innerHTML = user;
+} else {
+    document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+}
+function removeUser() {
+localStorage.removeItem('user');
+	document.getElementById("result").innerHTML =  myStorage.getItem('user');
+}
+function clearStorage() {
+localStorage.clear();
+document.getElementById("users").innerHTML = myStorage.getItem('users');
+}
+
+
+//arrays ///
+myStorage.setItem('users', users);
+
+function adduser() {
+var form = document.getElementById("form");
+
+var newperson = {fname:form.elements["fname"].value, lname:form.elements["lname"].value, age:form.elements["age"].value };
+console.log(newperson);
+users.push(newperson);
+myStorage.setItem('users', JSON.stringify(users));
+alert("New user added");
+console.log(myStorage.getItem('users'));
+document.getElementById("users").innerHTML = myStorage.getItem('users');
+}
+
+
+</script>
+
+</body>
+</html>
