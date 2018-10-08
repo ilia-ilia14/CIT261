@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+html, body{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+a {
+    text-decoration: none !important;
+}
+
+.learn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  //height: 100vh;
+  font-family: 'Muli', sans-serif;
+  background-color: #c2c2a3;
+}
+
+h1{
+  font-size: 2.5rem;
+  color: #e5e7ea;
+}
+
+.list {
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  font-size: 1rem;
+  padding: 35px;
+  margin-bottom: 150px;
+}
+ 
+input[type="checkbox"] + label {
+  display: block;
+  margin: 0.2em;
+}
+
+input[type="checkbox"]{
+  display: none;
+}
+
+input[type="checkbox"] + label span {
+  display:inline-block;
+  width:30px;
+  height:30px;
+  border-radius: 5px;
+  margin:-2px 10px 0 0;
+  vertical-align:middle;
+  background: #222;
+  cursor:pointer;
+}
+
+input[type="checkbox"]:checked + label span {
+  background: #00d30a   url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAaCAYAAACgoey0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAX9JREFUeNpi+P//PwMNsS4QbwBiLnQ5WlqqAsRP/0PARiBmoYfFkkB8+z8qWALEjLS0mB+IL/3HDibSymJQXB7/jx/UgNSCvU4lwAbEG4DYkwi1WUxUspQZiOcRaSkIWOAKMk0Sg3jaf+IBOIVjMyQWiH8DsR+RljaTYOkBWJ5GNwRk2R+ooh9A7ETA0jwSLL0ATfEYqRpkyVc0xR+A2AyHpdFA/I9IS0F5WhRbAWIEtQQbeAXE6lhC5jeRlj4GYgVsRaYK1HBCmmWgmuyxhAwu8BpaXjNgs/gYkYbcAGIXPCGDDkCOM8eVPkCEFhE+JhX8BGJnfAkTxgC57BOVLAXlihBC2RA9Vf+k0FJQKk8nJv+jCwQi5WNyQAWxpR02wRQS8icy6CKlmMUlUUGipfOQK3lKLAbhdhIKfWZS6258kiAfzCZg6V4gZiOn0UBIAcgn63BYehK50Ke2xQxQH+3FUoqJUtJMIlYhLxAfxVJu09xiWENuMxCrUaNhCBBgAOAVfjALa5TLAAAAAElFTkSuQmCC) no-repeat 25% center;
+  background-size: 25px 23px;
+}
+</style>
+<script>
+const checkboxes = document.querySelectorAll('.learn input[type="checkbox"]');
+let lastChecked;
+
+function handleCheck(e){
+  //check if they had the shift key down
+  // AND check that they are checking it
+  let inBetween = false;
+  if(e.shiftKey && this.checked){
+    checkboxes.forEach(checkbox =>{
+      console.log(checkbox);
+      if(checkbox === this || checkbox === lastChecked){
+        inBetween = !inBetween;
+      }
+      if(inBetween){
+        checkbox.checked = true;
+      }
+    });
+  }
+  lastChecked = this;
+}
+
+checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck))
+</script>
+<body>
+<section class="learn">
+  <h1>CIT261 CHECKLIST</h1>
+  <main class="list">
+  <div class="item">
+      <input type="checkbox" id="html" checked>
+      <label for="html"><span></span><a href="Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays.html" >Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays</a></label>
+  </div>
+  <div class="item">
+    <input type="checkbox" id="css" checked>
+    <label for="css"><span></span><a href="Object Creation Functions, Inheritance, Properties, Methods, Instantiation - Copy.html" >Object Creation Functions, Inheritance, Properties, Methods, Instantiation</a></label>
+  </div>
+  <div class="item">
+    <input type="checkbox" id="js" checked>
+    <label for="js"><span></span><a href="JSON Parse, Stringify.html" >JSON Parse, Stringify</a></label>
+  </div>
+  <div class="item">
+    <input type="checkbox" id="animations" checked>
+    <label for="animations"><span></span><a href="XMLHTTPRequest/Using XMLHTTPRequest to Consume a JSON Web Service.html" >Using XMLHTTPRequest to Consume a JSON Web Service</a></label>
+  </div>
+  <div class="item">
+    <input type="checkbox" id="grid" checked>
+    <label for="grid"><span></span><a href="Local Storage API.html" >Local Storage API, Storing and Retrieving Simple Data, Arrays, Associative Arrays, and Objects</a></label>
+  </div>
+  <div class="item">
+    <input type="checkbox" id="vue" checked>
+    <label for="vue"><span></span><a href="DOM Manipulation Using createElement, appendChild, insertBefore, removeChild.html" >DOM Manipulation Using createElement, appendChild, insertBefore, removeChild, etc.</a></label>
+  </div>
+  <div class="item">
+    <input type="checkbox" id="more" checked>
+    <label for="more"><span></span><a href="Manipulating CSS Class Properties Using JavaScript.html" >Manipulating CSS Class Properties Using JavaScript</a></label>
+  </div>
+  <div class="item">
+    <input type="checkbox" id="keep">
+    <label for="keep"><span></span><a href="" >Creating CSS3 Transitions and Animations in CSS and triggering them with JavaScript</a></label>
+  </div>
+    <div class="item">
+    <input type="checkbox" id="keep">
+    <label for="keep"><span></span><a href="" >JS Events Including those for Mobile Devices ( Ex. onTouchBegin, onLoad, etc.) and Animation and Transition Events</a></label>
+  </div>
+    <div class="item">
+    <input type="checkbox" id="keep">
+    <label for="keep"><span></span><a href="" >HTML5 Tags - Video, Audio, and Canvas</a></label>
+  </div>
+    <div class="item">
+    <input type="checkbox" id="keep">
+    <label for="keep"><span></span><a href="" >Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries (Thought Library)</a></label>
+  </div>
+    <div class="item">
+    <input type="checkbox" id="keep">
+    <label for="keep"><span></span><a href="" >Designing, Defining, and Triggering CSS3 Transforms without Custom Libraries (Thought Library)</a></label>
+  </div>
+    <div class="item">
+    <input type="checkbox" id="keep">
+    <label for="keep"><span></span><a href="" >Designing, Defining, and Triggering CSS3 Animations without Custom Libraries (Thought Library)</a></label>
+  </div>
+      <div class="item">
+    <input type="checkbox" id="keep">
+    <label for="keep"><span></span><a href="#" >Keep Learning ! </a></label>
+  </div>
+  </main>
+</section>
+
+
+
+</body>
+</html>
