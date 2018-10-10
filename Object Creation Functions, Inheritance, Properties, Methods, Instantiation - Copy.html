@@ -47,6 +47,7 @@ var Dell = Object.create(Laptop.prototype);
 Dell.setProperties(16.5, 2.3, 16, '2TB', 2);
 Dell.setbatterLife("1 Hour");
 Dell.setName("Dell");
+console.log("This is Dell object, which inherited properties from laptop, and laptop inherited propertes from device");
 console.log(Dell.name);
 console.log(Dell.screen); 
 console.log(Dell.batterlife); 
@@ -56,9 +57,40 @@ var HP = new Laptop();
 HP.setProperties(16.5, 2.3, 20, '2TB', 4);
 HP.setName("HP envy K20");
 HP.setbatterLife("5 Hours");
+console.log("This is HP object, which inherited properties from laptop, and laptop inherited propertes from device");
 console.log(HP.name +" "+ HP.GPU);
 
+
+
+function phone(){
+	var sim = "2";
+	var brand ='Generic';
+}
+//Inherit the properties from SuperType
+phone.prototype = new Device();
+
+phone.prototype.setsim = function(sim) {
+ this.sim = sim;
+}
+phone.prototype.setBrand = function(brand) {
+this.brand = brand;
+}
+
+//var apple = Object.create(phone.prototype);
+var apple = new phone();
+apple.setProperties(6, 2.3, 8, '2TB', 2);
+apple.setsim("2");
+apple.setBrand("Apple");
+
+console.log("This is apple object, which inherited properties from phone, and phone inherited propertes from device");
+console.log(apple.brand);
+console.log(apple.sim); 
+console.log(apple.screen); 
+
+
 </script>
+
+
 
 </body>
 </html>

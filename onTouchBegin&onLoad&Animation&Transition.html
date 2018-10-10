@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+  color: #fff;
+  font: 600 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+}
+.box {
+	position:absolute;
+  background: #2db34a;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 95px;
+  line-height: 95px;
+  text-align: center;
+  transition-property: background, border-radius;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+  width: 95px;
+  left:700px;
+}
+button, p {
+position:relative;
+left:700px;
+color:black;
+}
+.box:hover {
+  background: #ff7b29;
+  border-radius: 50%;
+  }
+</style>
+<script>
+
+window.onload = function(event) {
+var box = document.getElementById("box");
+
+var style = getComputedStyle(box);
+var leftPos = parseInt(style.getPropertyValue("left").replace(/[^-\d\.]/g, ''));
+console.log(leftPos);
+
+
+function moveleft() {
+refreshIntervalId = setInterval(function() {
+	leftPos -=10;
+   box.style.left = (leftPos) + 'px';
+  }, 80);
+  console.log("here");
+}
+function moveright() {
+refreshIntervalId = setInterval(function() {
+leftPos +=10;
+  box.style.left = (leftPos) + 'px';
+    }, 80);
+}
+function stop() {
+	clearInterval(refreshIntervalId);
+	console.log("End");
+}
+//document.getElementById("left").touchend = stop;
+document.getElementById("left").ontouchstart = moveleft;
+document.getElementById("left").addEventListener('touchend', stop, false);
+
+document.getElementById("right").ontouchstart = moveright;
+document.getElementById("right").addEventListener('touchend', stop, false);
+}
+</script>
+<body >
+<div>
+<p>Touch button in order to move rectangle</p>
+<hr/>
+<p></p>
+<button id="left"  >left</button>
+<button id="right" >right</button>
+
+</div>
+<hr/>
+<div id="box" class="box">Box</div>
+</body>
+
+</html>

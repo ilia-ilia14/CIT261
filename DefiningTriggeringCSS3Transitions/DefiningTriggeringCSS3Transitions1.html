@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div#box1 {
+	background: #9DCEFF;
+	width: 400px;
+	height: 200px;
+	overflow: hidden;
+}
+</style>
+<script>
+function slideOpenClose(el){
+	var elem = document.getElementById(el);
+	elem.style.transition = "height 0.2s linear 0s";
+	
+	if(elem.style.height == "1px") {
+	elem.style.height = "200px";
+	} else {
+		elem.style.height = "1px";
+	}
+	
+}
+</script>
+</head>
+<body>
+<button onclick="slideOpenClose('box1');">slideOpen</button>
+<p></p>
+<div id="box1">Content in box 1 ...</div>
+</body>
+</html>

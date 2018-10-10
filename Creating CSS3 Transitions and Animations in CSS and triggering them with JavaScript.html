@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+  color: #fff;
+  font: 600 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+}
+.box {
+	position:absolute;
+  background: #2db34a;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 95px;
+  line-height: 95px;
+  text-align: center;
+  transition-property: background, border-radius;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+  width: 95px;
+  left:700px;
+}
+button {
+position:relative;
+left:700px;}
+.box:hover {
+  background: #ff7b29;
+  border-radius: 50%;
+  }
+</style>
+<body>
+<div>
+<button onmousedown="moveleft()" onmouseup="stop()">left</button>
+<button onmousedown="moveright()"  onmouseup="stop()">right</button>
+
+</div>
+<hr/>
+<div id="box" class="box">Box</div>
+</body>
+<script>
+var box = document.getElementById("box");
+
+var style = getComputedStyle(box);
+var leftPos = parseInt(style.getPropertyValue("left").replace(/[^-\d\.]/g, ''));
+console.log(leftPos);
+
+var refreshIntervalId = "";
+function moveleft() {
+refreshIntervalId = setInterval(function() {
+	leftPos -=10;
+   box.style.left = (leftPos) + 'px';
+  }, 80);
+}
+function moveright() {
+refreshIntervalId = setInterval(function() {
+leftPos +=10;
+  box.style.left = (leftPos) + 'px';
+    }, 80);
+}
+function stop() {
+	clearInterval(refreshIntervalId);
+}
+</script>
+</html>
