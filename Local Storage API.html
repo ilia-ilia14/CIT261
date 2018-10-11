@@ -9,18 +9,19 @@
 <button  onclick="removeUser()">remove hardcoded user</button>
 <p></p>
 <p></p>
-<button  onclick="clearStorage()">clear all</button>
+<button  onclick="clearStorage()">CLEAR LOCAL STORAGE </button>
 <p></p>
-<p></p>
+<p></p><b/>
+form adds user to the local API Storage
 <form id="form">
 <input type="text" name="fname" placeholder="first name"><br>
 <input type="text" name="lname" placeholder="last name"><br>
 <input type="number" name="age" placeholder="age"><br>
-<button type="button"  onclick="adduser()">Add user</button>
+<button type="button"  onclick="adduser()">Add user to local storage</button>
 </form>
 
 <p></p>
-<b>localstorage list </b><span id="users"></span><br/>
+<p><b>local storage list </b><span id="users"></span></p><br/>
 
 <script>
 
@@ -40,10 +41,14 @@ if (typeof(Storage) !== "undefined") {
 } else {
     document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
 }
+
+/// REMOVES USER FROM LOCAL STORAGE ///
 function removeUser() {
 localStorage.removeItem('user');
 	document.getElementById("result").innerHTML =  myStorage.getItem('user');
 }
+
+/// DELETES EVEYTHING ///
 function clearStorage() {
 localStorage.clear();
 document.getElementById("users").innerHTML = myStorage.getItem('users');
@@ -53,6 +58,7 @@ document.getElementById("users").innerHTML = myStorage.getItem('users');
 //arrays ///
 myStorage.setItem('users', users);
 
+/// ADDS USER TO THE LOCAL STORAGE ///
 function adduser() {
 var form = document.getElementById("form");
 

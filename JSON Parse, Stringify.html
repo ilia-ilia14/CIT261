@@ -2,18 +2,18 @@
 <html>
 <body>
 
-<h2>Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays</h2>
+<h2>JSON Parse, Stringify</h2>
 
-<p>The for/in statement loops through the properties of an object.</p>
-
-<b>JSON object:  </b><span id="Jobject"></span><br/>
-<b>JSON.stringify:  </b><span id="Jstring"></span><br/>
-<b>back to JSON object: </b><span id="backto"></span><br/>
+<p><b>Original JSON object:  </b><span id="Jobject"></span></p><br/>
+<p><b>JSON.stringify:  </b><span id="Jstring"></span></p><br/>
+<p><b>back to JSON object: </b><span id="backto"></span></p><br/>
 <hr/>
-<b>users array object </b><span id="usersobj"></span><br/>
-<b>stringified users array object </b><span id="users"></span><br/>
+<p><b>users array object </b><span id="usersobj"></span></p><br/>
+<p><b>stringified users array object </b><span id="users"></span></p><br/>
 <hr/>
-<b>stringify second param </b><span id="secondParam"></span><br/>
+<h3>STRINGIFY TAKES SECOND PARAMETER WHICH ENABLES DEVELOPER TO FIND VALUE IN THE STRING AND REPLACE IT</h3>
+<p><b>Original person Object: </b><span >{fname:"John", lname:"Doe", age:25, email:"doe@gmail.com"} </span></p><br/>
+<p><b>stringified with second param </b><span id="secondParam"></span></p><br/>
 
 <script>
 var users = [];
@@ -29,13 +29,13 @@ document.getElementById("Jstring").innerHTML = personString;
 jobject =JSON.parse(personString);
 document.getElementById("backto").innerHTML = jobject;
 
-
-
 document.getElementById("usersobj").innerHTML = users;
 var newusers = JSON.stringify(users);
 document.getElementById("users").innerHTML = newusers;
 
 
+
+/// STRINGIFY TAKES SECOND PARAMETER WHICH ENABLES DEVELOPER TO FIND VALUE IN THE STRING AND REPLACE IT ///
 function replacer(key, value) {
   console.log(typeof value);
   if (key === 'email') {

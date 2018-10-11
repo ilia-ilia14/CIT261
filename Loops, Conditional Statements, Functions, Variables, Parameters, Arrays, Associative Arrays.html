@@ -6,10 +6,10 @@
 
 <p>The for/in statement loops through the properties of an object.</p>
 
-<b>FORLOOP First names in the Array: </b><span id="forloop"></span><br/>
-<b>WHILELOOP Last Names in the Array: </b><span id="whileloop"></span><br/>
+<p><b>FORLOOP First names in the Array: </b><span id="forloop"></span><br/></p>
+<p><b>WHILELOOP Last Names in the Array: </b><span id="whileloop"></span><br/></p>
 <b>DOWHILELOOP user ages in the Array: </b><span id="dowhileloop"></span><br/>
-<b>Function Oldest user: </b><span id="oldestUser"></span><br/>
+<p><b>Function Oldest user: </b><span id="oldestUser"></span><br/></p>
 
 <script>
 var users = [];
@@ -22,13 +22,17 @@ users.push({fname:"Bob", lname:"Menkok", age:35});
 
 var i;
 var text ="";
+//////// FOR LOOP ////////
 for (i = 0; i < users.length; i++) { 
     text += users[i].fname + ", ";
 }
 document.getElementById("forloop").innerHTML = text;
 
+
+
 i=0;
 text = "";
+//////// WHILE LOOP ////////
 while (users[i]) {
     text += users[i].lname + ", ";
     i++;
@@ -37,6 +41,7 @@ document.getElementById("whileloop").innerHTML = text;
 
 i=0;
 text = "";
+//////// DO WHILE LOOP ////////
 do {
     text += users[i].age + ", ";
     i++;
@@ -44,22 +49,21 @@ do {
 document.getElementById("dowhileloop").innerHTML = text;
 
 
-
+//////// FFUNCTION FINDS OLDEST AGE USER ////////
 function findOldestUser(users) {
 i = 0;
 var oldest =0
+var oldestUser = '';
 while (i < users.length) {
-	console.log(oldest +" " + users[i].age);
 	
 	if(oldest < users[i].age) {
 	oldest = users[i].age;
-	console.log(users[i].age);
+	oldestUser = users[i];
 	}
-	
-	//console.log(users[i].age);
 	i++;
 }
-return oldest;
+console.log(oldest);
+return "The oldest user is <b>"+ oldestUser.fname + "</b> and he is <b>" + oldestUser.age + "</b> old";
 }
 document.getElementById("oldestUser").innerHTML = findOldestUser(users);
 
