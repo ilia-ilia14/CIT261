@@ -2,6 +2,9 @@
 <html>
 <head>
 <style>
+body {
+background-color:black;
+}
 .flip3D{ width:90px; height:130px; margin:2px; float:left; }
 .flip3D > .front{
 	position:absolute;
@@ -36,25 +39,43 @@ div {position:relative;}
 
 </head>
 <body>
+<!--
 <div class="flip3D">
-<audio id="audio" src="FlopSound.mp3"  autoplay>
-  Your browser does not support the <code>audio</code> element.
-</audio>
   <div class="back">Box 1 - Back</div>
   <div class="front">Box 1 - Front</div>
 </div>
+  -->
+<audio id="audio" src="FlipEffect1.mp3"  autoplay>
+  Your browser does not support the <code>audio</code> element.
+</audio>
 </body>
 <script>
-for(i=0; i<97; i++) {
+for(i=0; i<98; i++) {
+var cardFront = document.createElement("img");
+cardFront.setAttribute('src', 'cardfront.png');
+cardFront.setAttribute("height", "130");
+cardFront.setAttribute("width", "90");
+//height="100" width="42"
+
+var cardBack = document.createElement("img");
+cardBack.setAttribute('src', 'cardback.png');
+cardBack.setAttribute("height", "130");
+cardBack.setAttribute("width", "90");
+
 var flipDiv = document.createElement("div");
 	flipDiv.setAttribute('class', 'flip3D');
 	flipDiv.setAttribute('onmouseover', 'play()');
+	
 var front = document.createElement("div");
 	front.setAttribute('class', 'front');
-	front.textContent = "This is front";
+	//front.textContent = "This is front";
+	front.appendChild(cardFront);
+	
 var back = document.createElement("div");
 	back.setAttribute('class', 'back');
-	back.textContent = "This is back";
+	//back.textContent = "This is back";
+	back.appendChild(cardBack);
+	
 	flipDiv.appendChild(back);
 	flipDiv.appendChild(front);
 	
