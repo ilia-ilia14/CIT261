@@ -69,12 +69,12 @@ var flipDiv = document.createElement("div");
 var front = document.createElement("div");
 	front.setAttribute('class', 'front');
 	//front.textContent = "This is front";
-	front.appendChild(cardFront);
+	front.appendChild(cardBack);
 	
 var back = document.createElement("div");
 	back.setAttribute('class', 'back');
 	//back.textContent = "This is back";
-	back.appendChild(cardBack);
+	back.appendChild(cardFront);
 	
 	flipDiv.appendChild(back);
 	flipDiv.appendChild(front);
