@@ -1,34 +1,61 @@
 <!DOCTYPE html>
 <html>
 <body>
+
+
+<span>Please type the country you want to ger information about i.e "us" for United States</span>
+<!--
 <span>most of the borwsers will block cross-domain requests</span>
 <p><b>in order to enabale this feature please <a href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en-US">click here</a> to download crome extensions</b></p>
+-->
+<form id="form">
+<input type="text" name="country" id="country" placeholder="Country" pattern="[a-zA-Z]*" />
+<button type="button"  onclick="makeRequest()">Add user to local storage</button>
+</form>
 
+
+<br/>
 <p></p>
-<div id="display"></div>
+<div id="display">here</div>
+<div>
+<div>Name: <span id="name"></span></div>
+<div>Capital: <span id="capital"></span></div>
+<div>Country Info:<a href="" id="info" ></a></div>
+
+
+</div>
 
 <script>
-var xmlhttp = new XMLHttpRequest();
-var url = "https://www.rentolium.com/check.php";
 
-xmlhttp.onreadystatechange = function() {
+function makeRequest() {
+	
+	var val = document.getElementById("country").value;
+	var country = val.toUpperCase();
+	
+	
+	var xmlhttp = new XMLHttpRequest();
+	var url = "http://www.geognos.com/api/en/countries/info/"+country +".json";
+	
+	xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var data = JSON.parse(this.responseText);
-		console.log(this.responseText);
+		//console.log(this.responseText);
         process(data);
     }
 };
-xmlhttp.open("POST", url);
-xmlhttp.send();
-
-function process(data) {
-    var out = "";
-    var i;
-    for(i = 0; i < data.length; i++) {
-        out += '<b>' + data[i].fname +" "+ data[i].lname +' </b><span> ' + data[i].age + '<span><br/>';
-    }
-    document.getElementById("display").innerHTML = out;
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	
 }
+function process(data) {
+console.log(data.Results);
+   document.getElementById("name").innerHTML = data.Results.Name;
+   document.getElementById("capital").innerHTML = data.Results.Capital.Name;
+   document.getElementById("info").innerHTML = data.Results.CountryInfo;
+   document.getElementById("info").href = data.Results.CountryInfo;
+}
+
+
 </script>
 
 </body>

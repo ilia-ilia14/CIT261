@@ -10,7 +10,7 @@
 <body>
 <button onclick="manipulatecss()">Manipulate css</button>
 <p></p>
-<div id="elem" style="color: purple">
+<div id="elem" >
 testing
 </div>
 
@@ -63,12 +63,10 @@ i--;
  var elem = document.getElementById("elem");
  
 function manipulatecss() {
-   elem.setAttribute("style","background-color: coral; height: 200px");
+   elem.setAttribute("style","background-color: coral; height: 200px; width: 500px");
 
    var style = elem.getAttribute("style");
    alert(style); // now only displays height, resets styles
-
-   
    }
 
 </script>

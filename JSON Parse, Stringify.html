@@ -19,9 +19,11 @@
 var users = [];
 var person = {fname:"John", lname:"Doe", age:25, email:"doe@gmail.com"};
 users.push(person);
+console.log(person.fname);
 users.push({fname:"James", lname:"Dean", age:37});
 users.push({fname:"Bob", lname:"Menkok", age:35});
 console.log(users);
+
 
 var personString = JSON.stringify(person);
 document.getElementById("Jobject").innerHTML = person;
