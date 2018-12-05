@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html>
+<style>
+    .item {
+        margin: 25px 0 20px 0;
+    }
+
+    .title {
+        font-size: x-large;
+        margin-bottom: 20px;
+    }
+
+    .description {
+        font-size: medium;
+    }
+
+    .pubDate {
+        font-size: smaller;
+        text-align: right;
+    }
+
+
+</style>
 <body>
 
-
-<span>Please type the country you want to ger information about i.e "us" for United States</span>
-<!--
-<span>most of the borwsers will block cross-domain requests</span>
-<p><b>in order to enabale this feature please <a href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en-US">click here</a> to download crome extensions</b></p>
--->
-<form id="form">
-<input type="text" name="country" id="country" placeholder="Country" pattern="[a-zA-Z]*" />
-<button type="button"  onclick="makeRequest()">Add user to local storage</button>
-</form>
-
-
-<br/>
-<p></p>
-<div id="display">here</div>
 <div>
-<div>Name: <span id="name"></span></div>
-<div>Capital: <span id="capital"></span></div>
-<div>Country Info:<a href="" id="info" ></a></div>
+        <div class="jumbotron" style="margin:20px;padding:20px">
+            <h2>Newssite</h2>
+            <button type="button"  onclick="makeRequest()">Get News</button>
+            <ul id="ulContainer" class="list-group" style="padding-top:30px">
+
+            </ul>
+        </div>
 
 
 </div>
@@ -28,31 +38,40 @@
 <script>
 
 function makeRequest() {
-	
-	var val = document.getElementById("country").value;
-	var country = val.toUpperCase();
-	
-	
 	var xmlhttp = new XMLHttpRequest();
-	var url = "http://www.geognos.com/api/en/countries/info/"+country +".json";
+	var url = 'http://api.20min.ch/rss/view/63';
 	
 	xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-        var data = JSON.parse(this.responseText);
-		//console.log(this.responseText);
-        process(data);
+        var xml = this.responseText;
+	  console.log(xml);
+        parser = new DOMParser();
+        xmlDoc = parser.parseFromString(xml,"text/xml");
+
+	var nodes = xmlDoc.getElementsByTagName('item'); //Get the <node> tags
+    amountOfNodes = nodes.length;
+	//console.log(amountOfNodes);
+        for (i = 0; i < nodes.length ;i++) {
+          //  const item_title =  nodes[i].getElementsByTagName("title").firstChild.data;
+            const item_title =  nodes[i].getElementsByTagName("title")[0].innerHTML;
+            const item_description = nodes[i].getElementsByTagName("description")[0].innerHTML;
+            const item_pubDate = nodes[i].getElementsByTagName("pubDate")[0].innerHTML;
+            AddItem(item_title, item_description, item_pubDate);
+        }
+	  
     }
 };
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 	
 }
-function process(data) {
-console.log(data.Results);
-   document.getElementById("name").innerHTML = data.Results.Name;
-   document.getElementById("capital").innerHTML = data.Results.Capital.Name;
-   document.getElementById("info").innerHTML = data.Results.CountryInfo;
-   document.getElementById("info").href = data.Results.CountryInfo;
+function AddItem(item_title, item_description, item_pubDate) {
+var container = document.getElementById('ulContainer');
+    container.innerHTML +=`<li class="list-group-item">
+                <div class="title">${item_title}</div>
+                <div class="description">${item_description}</div>
+                <div class="pubDate">${item_pubDate}</div>
+            </li>`;
 }
 
 
